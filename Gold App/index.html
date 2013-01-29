@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<!-- Devin "Lauren" Elder-->
+<!-- MIU Term 1301-->
+<!-- Project 2-->
+<!-- 01/10/2013-->
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="Remember users on dating websites" />
+		<meta name="keywords" content="online dating, date, remember people" />
+		<meta name="robots" content="index, nofollow" />
+		<meta name="HandheldFriendly" content="True" />
+		<meta name="MobileOptimized" content="320" />
+		<meta name="viewport" content="user-scalable=no, width=device-width" />
+		<title>Remember Who?</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/css.css" />
+	</head>
+
+	<body>
+
+		<!-- Home Page-->
+		<div data-role="page" id="homePage">
+
+			<div data-role="header" data-position="fixed">
+				<h1>Remember Who</h1>
+			</div>
+			<a href="#addItem" data-inset="true" title="Add a User" name="cta"><img src="img/indexImage.png"></a>
+			<div>
+				<p>Search Users: <input type="search" data-filter="true"/></p>
+			</div>
+			<h3>Browse Users By...</h3>
+			<div class="ui-grid-a">
+				<div class="ui-block-a"><a href="#genderCatPage" data-role="button"><strong><img src="img/Male.png"><br><br>Gender</strong></a></div>
+				<div class="ui-block-b"><a href="#orientationCatPage" data-role="button"><strong><img src="img/Straight.png"><br>Sexual<br>Orientation</strong></a></div>
+				<div class="ui-block-c"><a href="#kidsCatPage" data-role="button"><strong><img src="img/kidsThumbnail.png"><br>Children</strong></a></div>
+				<div class="ui-block-d"><a href="#miscCatPage" data-role="button"><strong><img src="img/miscThumbnail.png"><br>Misc</strong></a></div>
+			</div>
+			<br>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="index.html" data-icon="home" class="ui-btn-active">Home</a></li>
+						<li><a href="#addItem" data-icon="plus">Add a User</a></li>
+						<li><a href="#resultsPage" id="favorites" data-icon="star">Favorites</a></li>
+						<li><a href="#aboutPage" data-icon="info" data-iconpos="right">About Page</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Add Item Page -->
+		<div data-role="page" id="addItem" data-add-back-btn="true">
+
+			<div data-role="header" data-position="fixed">
+				<h1>Remember Who</h1>
+			</div>
+			<nav>
+				<p><a href="#" id="clear" data-role="button">Clear All Users</a><a href="#" id="display" data-role="button">Display Users</a><a href="#addItem" id="Add_a_User" style="display:none;">Add a User</a></p>
+				<a href="#" id="clear">Clear All Users</a>
+				<a href="#" id="display">Display Users</a>
+				<a href="additem.html" id="Add_a_User" style="display:none;">Add a User</a>
+			</nav>
+			<br />
+			<form action="" id="addUserForm">
+				<section>
+					<ul id="errors"></ul>
+				</section>
+				<section>
+					<h3>General Information</h3>
+					<div data-role="fieldcontain">
+						<label for="uname">Username: (Required)</label>
+						<input type="text" name="uname" id="uname" />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="age">Age: (Required)</label>
+						<input type="text" name="age" id="age" />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="city">City: (Required)</label>
+						<input type="text" name="city" id="city" />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="wsite">Dating Website: (Required)</label>
+						<input type="text" name="wsite" id="wsite" />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="fcontact">First Contacted: </label>
+						<input type="date" name="fcontact" id="fcontact" />
+					</div>
+				</section>
+				<br />
+				<section>
+					<h3>Gender and Orientation</h3>
+					<div data-role="fieldcontain">
+						<fieldset data-role="controlgroup">
+							<legend>Is the user male or female?</legend>
+							<input type="radio" value="Male" name="gender" id="gender1" />
+							<label for="gender1">Male</label>
+							<input type="radio" value="Female" name="gender" id="gender2" />
+							<label for="gender2">Female</label>
+						</fieldset>
+					</div>
+					<div data-role="fieldcontain">
+						<fieldset data-role="controlgroup">
+							<legend>What is the users sexual orientation?</legend>
+							<input type="radio" value="Straight" name="orientation" id="orientation1" />
+							<label for="orientation1">Straight</label>
+							<input type="radio" value="Bisexual" name="orientation" id="orientation2" />
+							<label for="orientation2">Bisexual</label>
+							<input type="radio" value="Gay" name="orientation" id="orientation3" />
+							<label for="orientation3">Gay</label>
+						</fieldset>
+					</div>
+				</section>
+				<br />
+				<section>
+					<h3>More Specific Information</h3>
+					<div data-role="fieldcontain">
+						<fieldset data-role="controlgroup">
+							<legend>Check all that apply.</legend>
+							<input type="checkbox" value="Favorite" name="checkBox" id="favorite" />
+							<label for="favorite">Favorite</label>
+							<input type="checkbox" value="Has a Vehicle" name="checkBox" id="vehicle" />
+							<label for="vehicle">Has A Vehicle</label>
+							<input type="checkbox" value="Has Shared Interests" name="checkBox" id="shared_interests" />
+							<label for="shared_interests">Has Shared Interests</label>
+							<input type="checkbox" value="Is Financially Stable" name="checkBox" id="financially_stable" />
+							<label for="financially_stable">Is Financially Stable</label>
+							<input type="checkbox" value="Drinks" name="checkBox" id="drinks" />
+							<label for="drinks">Drinks</label>
+							<input type="checkbox" value="Smokes" name="checkBox" id="smokes" />
+							<label for="smokes">Smokes</label>
+							<input type="checkbox" value="Has Kids" name="checkBox" id="has_kids" />
+							<label for="has_kids">Has Kids</label>
+							<input type="checkbox" value="Wants Kids" name="checkBox" id="wants_kids" />
+							<label for="wants_kids">Wants Kids</label>
+							<input type="checkbox" value="Has Pets" name="checkBox" id="has_pets" />
+							<label for="has_pets">Has Pets</label>
+						</fieldset>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="music">Preferred type of music:</label>
+						<select name="perferredMusic" id="music">
+							<option value="choose music">Choose a Genre</option>
+							<option value="Alternative">Alternative</option>
+							<option value="Blues">Blues</option>
+							<option value="Classical">Classical</option>
+							<option value="Country">Country</option>
+							<option value="Dance">Dance</option>
+							<option value="Rap">Rap</option>
+							<option value="Hip Hop">Hip Hop</option>
+							<option value="Jazz">Jazz</option>
+							<option value="Pop">Pop</option>
+							<option value="Rock">Rock</option>
+						</select>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="movie">Preferred type of movie:</label>
+						<select name="preferredMovie" id="movie">
+							<option value="choose movie">Choose a Genre</option>
+							<option value="Action">Action</option>
+							<option value="Adventure">Adventure</option>
+							<option value="Comedy">Comedy</option>
+							<option value="Drama">Drama</option>
+							<option value="Historical">Historical</option>
+							<option value="Horror">Horror</option>
+							<option value="Musical">Musical</option>
+							<option value="Science Fiction">Science Fiction</option>
+							<option value="War">War</option>
+							<option value="Western">Western</option>
+						</select>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="compatibility">Level of Compatibility:</label>
+						<input type="range" name="compatibility" id="compatibility"  min="1" max="100" onchange="displaySlider(this.value)" />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="comments">Additional Information:</label>
+						<textarea id="comments"></textarea>
+					</div>
+				</section>
+			</form>
+			<br />
+			<input type="submit" id="submit" value="Submit New User" />
+			<br>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="index.html" data-icon="home">Home</a></li>
+						<li><a href="#additem" data-icon="plus" class="ui-btn-active">Add a User</a></li>
+						<li><a href="#resultsPage" id="favorites" data-icon="star">Favorites</a></li>
+						<li><a href="#aboutPage" data-icon="info" data-iconpos="right">About Page</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- About Page-->
+		<div data-role="page" id="aboutPage" data-add-back-btn="true">
+
+			<div data-role="header" data-position="fixed">
+				<h1>Remember Who</h1>
+			</div>
+			<div>
+				<p>Search Users: <input type="search" data-filter="true"/></p>
+			</div>
+			<div>
+				<h2>About Links</h2>
+				<p><a href="#infoPage" data-role="button" data-icon="arrow-r" data-iconpos="right">Info Page</a></p>
+				<p><a href="https://github.com/laurenelder/MIU-Project-3" data-role="button" data-icon="arrow-r" data-iconpos="right">Github Link</a></p>
+				<p><a href="../Bronze App/index.html" data-role="button" data-icon="arrow-r" data-iconpos="right">Bronze Application</a></p>
+				<p><a href="#homePage" data-role="button" data-icon="arrow-r" data-iconpos="right">Home Page</a></p>
+			</div>
+			<br>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="index.html" data-icon="home">Home</a></li>
+						<li><a href="#addItem" data-ajax="false" data-icon="plus">Add a User</a></li>
+						<li><a href="#resultsPage" id="favorites" data-icon="star">Favorites</a></li>
+						<li><a href="#aboutPage" data-icon="info" data-iconpos="right" class="ui-btn-active">About Page</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- Info Page-->
+		<div data-role="page" id="infoPage" data-add-back-btn="true">
+
+			<div data-role="header" data-position="fixed">
+				<h1>Remember Who</h1>
+			</div>
+			<div>
+				<p>Search Users: <input type="search" /></p>
+			</div>
+				<h2>About This Application</h2>
+			<article>
+				<p id="description">Remember Who? is an app that gives you quick and easy access to general information about users you have met on online dating sites. Sometimes quite a bit of time passes before talking to the same user again and with this app you can see an overview of the previous people you have talked to without having to search through profiles to find the same information.</p>
+				<br>
+				<p>Images Provided By...</p>
+				<p>Image courtesy of adamr / <a href="http://www.freedigitalphotos.net" target="_blank">FreeDigitalPhotos.net</a></p>
+				<p>Image courtesy of supakitmod / <a href="http://www.freedigitalphotos.net" target="_blank">FreeDigitalPhotos.net</a></p>
+				<p>Image courtesy of M - Pics / <a href="http://www.freedigitalphotos.net" target="_blank">FreeDigitalPhotos.net</a></p>
+				<p>Image courtesy of Carlos Porto / <a href="http://www.freedigitalphotos.net" target="_blank">FreeDigitalPhotos.net</a></p>
+				<p>Image courtesy of renjith krishnan / <a href="http://www.freedigitalphotos.net" target="_blank">FreeDigitalPhotos.net</a></p>
+				<p>Image courtesy of vorakorn / <a href="http://www.freedigitalphotos.net" target="_blank">FreeDigitalPhotos.net</a></p>
+				<p>Image courtesy of Boaz Yiftach / <a href="http://www.freedigitalphotos.net" target="_blank">FreeDigitalPhotos.net</a></p>
+				<p>Image courtesy of hinnamsaisuy / <a href="http://www.freedigitalphotos.net" target="_blank">FreeDigitalPhotos.net</a></p>
+				<p>Image courtesy of Jomphong / <a href="http://www.freedigitalphotos.net" target="_blank">FreeDigitalPhotos.net</a></p>
+				<p>Image courtesy of photostock / <a href="http://www.freedigitalphotos.net" target="_blank">FreeDigitalPhotos.net</a></p>
+			</article>
+			<br>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="index.html" data-icon="home">Home</a></li>
+						<li><a href="#addItem" data-icon="plus">Add a User</a></li>
+						<li><a href="#resultsPage" id="favorites" data-icon="star">Favorites</a></li>
+						<li><a href="#aboutPage" data-icon="info" data-iconpos="right">About Page</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- Gender Subcategory Page-->
+		<div data-role="page" id="genderCatPage" data-add-back-btn="true">
+
+			<div data-role="header" data-position="fixed">
+				<h1>Remember Who</h1>
+			</div>
+			<div>
+				<p>Search Users: <input type="search" data-filter="true"/></p>
+			</div>
+			<div>
+				<h2>Gender</h2>
+				<ul data-role="listview">
+				<li>
+					<a href="#resultsPage" id="browseMale">
+						<img src="img/maleThumbnail.png">
+						<h3>Male</h3>
+					</a>
+				</li>
+				<li>
+					<a href="#resultsPage" id="browseFemale">
+						<img src="img/femaleThumbnail.png">
+						<h3>Female</h3>
+					</a>
+				</li>
+			</ul>
+			</div>
+			<br>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="index.html" data-icon="home">Home</a></li>
+						<li><a href="#addItem" data-icon="plus">Add a User</a></li>
+						<li><a href="#resultsPage" id="favorites" data-icon="star">Favorites</a></li>
+						<li><a href="#aboutPage" data-icon="info" data-iconpos="right">About Page</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+				<!-- Orientation Subcategory Page-->
+		<div data-role="page" id="orientationCatPage" data-add-back-btn="true">
+
+			<div data-role="header" data-position="fixed">
+				<h1>Remember Who</h1>
+			</div>
+			<div>
+				<p>Search Users: <input type="search" data-filter="true"/></p>
+			</div>
+			<div data-role="content">
+				<h2>Sexual Orientation</h2>
+				<ul data-role="listview">
+				<li>
+					<a href="#resultsPage" id="browseStraight">
+						<img src="img/straightThumbnail.png">
+						<h3>Straight</h3>
+					</a>
+				</li>
+				<li>
+					<a href="#resultsPage" id="browseBisexual">
+						<img src="img/bisexualThumbnail.png">
+						<h3>Bisexual</h3>
+					</a>
+				</li>
+				<li>
+					<a href="#resultsPage" id="browseGayMale">
+						<img src="img/gayMaleThumbnail.png">
+						<h3>Gay Male</h3>
+					</a>
+				</li>
+				<li>
+					<a href="#resultsPage" id="browseGayFemale">
+						<img src="img/gayFemaleThumbnail.png">
+						<h3>Gay Female</h3>
+					</a>
+				</li>
+				</ul>
+			</div>
+			<br>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="index.html" data-icon="home">Home</a></li>
+						<li><a href="#addItem" data-icon="plus">Add a User</a></li>
+						<li><a href="#resultsPage" id="favorites" data-icon="star">Favorites</a></li>
+						<li><a href="#aboutPage" data-icon="info" data-iconpos="right">About Page</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+				<!-- Children Subcategory Page-->
+		<div data-role="page" id="kidsCatPage" data-add-back-btn="true">
+
+			<div data-role="header" data-position="fixed">
+				<h1>Remember Who</h1>
+			</div>
+			<div>
+				<p>Search Users: <input type="search" data-filter="true"/></p>
+			</div>
+			<div data-role="content">
+				<h2>Children</h2>
+				<ul data-role="listview">
+					<li>
+						<a href="#resultsPage" id="browseHasKids">
+							<img src="img/hasKidsThumbnail.png">
+							<h3>Has Kids</h3>
+						</a>
+					</li>
+					<li>
+						<a href="#resultsPage" id="browseWantsKids">
+							<img src="img/wantsKidsThumbnail.png">
+							<h3>Wants Kids</h3>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<br>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="index.html" data-icon="home">Home</a></li>
+						<li><a href="#addItem" data-icon="plus">Add a User</a></li>
+						<li><a href="#resultsPage" id="favorites" data-icon="star">Favorites</a></li>
+						<li><a href="#aboutPage" data-icon="info" data-iconpos="right">About Page</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+				<!-- Misc Subcategory Page-->
+		<div data-role="page" id="miscCatPage" data-add-back-btn="true">
+
+			<div data-role="header" data-position="fixed">
+				<h1>Remember Who</h1>
+			</div>
+			<div>
+				<p>Search Users: <input type="search" /></p>
+			</div>
+			<div data-role="content">
+				<h2>Miscellaneous</h2>
+				<ul data-role="listview">
+					<li>
+						<a href="#resultsPage" id="browseVehicle">
+							<img src="img/vehicleThumbnail.png">
+							<h3>Has Vehicle</h3>
+						</a>
+					</li>
+					<li>
+						<a href="#resultsPage" id="browseInterests">
+							<img src="img/sharedInterestsThumbnail.png">
+							<h3>Has Shared Interests</h3>
+						</a>
+					</li>
+					<li>
+						<a href="#resultsPage" id="browseStable">
+							<img src="img/financiallyStableThumbnail.png">
+							<h3>Financially Stable</h3>
+						</a>
+					</li>
+					<li>
+						<a href="#resultsPage" id="browseDrinks">
+							<img src="img/drinksThumbnail.png">
+							<h3>Drinks</h3>
+						</a>
+					</li>
+					<li>
+						<a href="#resultsPage" id="browseSmokes">
+							<img src="img/smokesThumbnail.png">
+							<h3>Smokes</h3>
+						</a>
+					</li>
+					<li>
+						<a href="#resultsPage" id="browsePets">
+							<img src="img/hasPetsThumbnail.png">
+							<h3>Has Pets</h3>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<br>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="index.html" data-icon="home">Home</a></li>
+						<li><a href="#addItem" data-icon="plus">Add a User</a></li>
+						<li><a href="#resultsPage" id="favorites" data-icon="star">Favorites</a></li>
+						<li><a href="#aboutPage" data-icon="info" data-iconpos="right">About Page</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Results Page-->
+		<div data-role="page" id="resultsPage">
+
+			<div data-role="header" data-position="fixed">
+				<h1>Remember Who</h1>
+			</div>
+			<div>
+				<p>Search Users: <input type="search" data-filter="true"/></p>
+			</div>
+			<div>
+				<h2>Results...</h2>
+				<div id="displayResults">
+				</div>
+			</div>
+			<br>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="index.html" data-icon="home">Home</a></li>
+						<li><a href="#addItem" data-icon="plus">Add a User</a></li>
+						<li><a href="#resultsPage" id="favorites" data-icon="star">Favorites</a></li>
+						<li><a href="#aboutPage" data-icon="info" data-iconpos="right">About Page</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+		<script type="text/javascript" src="js/json.js"></script>
+		<script type="text/javascript" src="js/jquery.validate.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>-->
+	</body>
+</html>
