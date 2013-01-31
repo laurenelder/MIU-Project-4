@@ -1,4 +1,4 @@
-$('#homePage').on('pageinit', function(){
+$('#resultsPage').on('pageinit', function(){
 	//code needed for home page goes here
 });	
 		
@@ -47,6 +47,11 @@ $('#addItem').on('pageinit', function(){
 
 // Check Box Function
 	var getCheckBoxValue = function() {
+		if (idvalue("favoriteBox").checked) {
+			favoriteValue = "Yes";
+		} else {
+			favoriteValue = "No"
+		}
 		if (idvalue("vehicle").checked) {
 			vehicleValue = "Yes";
 		} else {
@@ -93,7 +98,7 @@ $('#addItem').on('pageinit', function(){
 	var makeItemLinks = function(key, linksLi) {
 
 		// Edit Link
-		var editLink = idvalue("displayResults").createElement("a");
+		var editLink = document.createElement("a");
 		editLink.href = "#addItem";
 		editLink.key = key;
 		var editText = "Edit User"
@@ -102,17 +107,57 @@ $('#addItem').on('pageinit', function(){
 		linksLi.appendChild(editLink);
 
 		// Break Tag
-		var breakTag = idvalue("displayResults").createElement("br");
+		var breakTag = document.createElement("br");
 		linksLi.appendChild(breakTag);
 
 		// Delete Link
-		var deleteLink = idvalue("displayResults").createElement("a");
-		deleteLink.href = "#resultsPage";
+		var deleteLink = document.createElement("a");
+		deleteLink.href = "#addItem";
 		deleteLink.key = key;
 		var deleteText = "Delete User"
 		deleteLink.addEventListener("click", deleteItem);
 		deleteLink.innerHTML = deleteText;
 		linksLi.appendChild(deleteLink);
+	};
+
+// Results Function
+	var resultsData	= function(fav, browseItem, browseVal, search, specificOne, specificTwo) {
+		$("resultsPage").page("reload");
+		var makeDivResult = document.createElement("div");
+		makeDivResult.setAttribute("id", "item");
+		var makeListResult = document.createElement("ul");
+		makeDivResult.appendChild(makeListResult);
+		idvalue("displayResults").appendChild(makeDivResult);
+		idvalue("item").style.display = "block";
+		console.log("ello");
+		for (var i = 0, j = window.localStorage.length; i < j; i++) {
+			var keyResult = window.localStorage.key(i);
+			var valueResult = window.localStorage.getItem(keyResult);
+			var objResult = JSON.parse(valueResult);
+			if (objResult.favorite[1] == fav || 
+				objResult.gender[1] == browseVal || 
+				objResult.orientation[1] == browseVal ||
+				objResult.gender[1] == specificOne && objResult.orientation[1] == specificTwo) {
+				//|| obj[n][0] == search || 
+				//obj[n][1] == search)
+				var makeLiResult = document.createElement("li");
+				var linksLiResult = document.createElement("li");
+				makeListResult.appendChild(makeLiResult);
+				var makeSubListResult = document.createElement("ul");
+				makeLiResult.appendChild(makeSubListResult);
+				getImage(objResult.gender[1], objResult.orientation[1], makeSubListResult);
+				for(var n in objResult) {
+					var makeSubLiResult = document.createElement("li");
+					makeSubListResult.appendChild(makeSubLiResult);
+					var optSubTextResult = objResult[n][0] + " " + objResult[n][1];
+					makeSubLiResult.innerHTML = optSubTextResult;
+					makeSubListResult.appendChild(linksLiResult)
+				};
+			makeItemLinks(window.localStorage.key(i), linksLiResult);
+			} else {
+				console.log("Bye");
+			};
+		};
 	};
 
 // Get Data Function
@@ -122,25 +167,26 @@ $('#addItem').on('pageinit', function(){
 			autoFillData();
 		}
 		//toggleLinks("on");
-
-		var makeDiv = idvalue("displayResults").createElement("div");
+		$("resultsPage").page("reload");
+		var makeDiv = document.createElement("div");
 		makeDiv.setAttribute("id", "item");
-		var makeList = idvalue("displayResults").createElement("ul");
+		var makeList = document.createElement("ul");
 		makeDiv.appendChild(makeList);
 		idvalue("displayResults").appendChild(makeDiv);
-		idvalue("item").style.display = "block";
+		document.getElementById("item").style.display = "block";
+		console.log("hi");
 		for (var i = 0, j = window.localStorage.length; i < j; i++) {
-			var makeLi = idvalue("displayResults").createElement("li");
-			var linksLi = idvalue("displayResults").createElement("li");
+			var makeLi = document.createElement("li");
+			var linksLi = document.createElement("li");
 			makeList.appendChild(makeLi);
 			var key = window.localStorage.key(i);
 			var value = window.localStorage.getItem(key);
 			var obj = JSON.parse(value);
-			var makeSubList = idvalue("displayResults").createElement("ul");
+			var makeSubList = document.createElement("ul");
 			makeLi.appendChild(makeSubList);
 			getImage(obj.gender[1], obj.orientation[1], makeSubList);
 			for(var n in obj) {
-				var makeSubLi = idvalue("displayResults").createElement("li");
+				var makeSubLi = document.createElement("li");
 				makeSubList.appendChild(makeSubLi);
 				var optSubText = obj[n][0] + " " + obj[n][1];
 				makeSubLi.innerHTML = optSubText;
@@ -152,10 +198,10 @@ $('#addItem').on('pageinit', function(){
 
 // Get Image Function
 var getImage = function(genderType, oValue, makeSubList) {
-	var imageLi = idvalue("resultsPage").createElement("li");
+	var imageLi = document.createElement("li");
 	makeSubList.appendChild(imageLi);
-	var newImgOne = idvalue("resultsPage").createElement("img");
-	var newImgTwo = idvalue("resultsPage").createElement("img");
+	var newImgOne = document.createElement("img");
+	var newImgTwo = document.createElement("img");
 	var setSrcOne = newImgOne.setAttribute("src", "img/" + genderType + ".png");
 	if (oValue === "Straight") {
 		var setSrcTwo = newImgTwo.setAttribute("src", "img/Straight.png");
@@ -198,6 +244,7 @@ var getImage = function(genderType, oValue, makeSubList) {
 			item.contacted		= ["First Contacted: ", idvalue("fcontact").value];
 			item.gender			= ["Gender: ", genderValue];
 			item.orientation	= ["Sexual Orientation: ", orientationValue];
+			item.favorite 		= ["Favorite", favoriteValue]
 			item.vehicle		= ["Has a Vehicle: ", vehicleValue];
 			item.interests		= ["Has Shared Interests: ", interestsValue];
 			item.stable			= ["Is Financially Stable: ", stableValue];
@@ -243,8 +290,11 @@ var getImage = function(genderType, oValue, makeSubList) {
 				radioTwo[i].setAttribute("checked", "checked");
 			}
 		};
+		if (item.favorite[1] == "Yes") {
+			idvalue("favoriteBox").setAttribute("checked", "checked");
+		}
 		if (item.vehicle[1] == "Yes") {
-			idvalue("vehicle").setAttribute("checked", "checked");
+			document.getElementById("vehicle").setAttribute("checked", "checked");
 		}
 		if (item.interests[1] == "Yes") {
 			idvalue("shared_interests").setAttribute("checked", "checked");
@@ -271,11 +321,11 @@ var getImage = function(genderType, oValue, makeSubList) {
 		idvalue("movie").value = item.movie[1];
 		idvalue("compatibility").value = item.compatible[1];
 		idvalue("comments").value = item.notes[1];
-		save.removeEventListener("click", validate);
+		save.removeEventListener("click", storeData);
 		idvalue("submit").value = "Edit User";
 		var editSubmit = idvalue("submit");
 		editSubmit.value = "Edit User";
-		editSubmit.addEventListener("click", validate);
+		editSubmit.addEventListener("click", storeData);
 		editSubmit.key = this.key;
 	};
 
@@ -314,15 +364,46 @@ var getImage = function(genderType, oValue, makeSubList) {
 	};
 
 // Global Variables
-	var genderValue = "Unspecified"
-	var orientationValue = "Unspecified"
+	var genderValue = "Unspecified";
+	var orientationValue = "Unspecified";
 
 // Event Listeners
 	var displayLink = idvalue("display");
 	displayLink.addEventListener("click", getData);
 	var clearLink = idvalue("clear");
 	clearLink.addEventListener("click", confirmDelete);
-	var save = idvalue("submit");
-	save.addEventListener("click", confirmDelete);
+	var bMale = idvalue("browseMale");
+	bMale.addEventListener("click", resultsData("", "", "Male", "", "", ""));
+	/*var bFemale = idvalue("browseFemale");
+	bFemale.addEventListener("click", resultsData("", "", "Female", "", "", ""));
+	var bStraight = idvalue("browseStraight");
+	bStraight.addEventListener("click", resultsData("", "", "Straight", "", "", ""));
+	var bBisexual = idvalue("browseBisexual");
+	bBisexual.addEventListener("click", resultsData("", "", "Bisexual", "", "", ""));
+	var bGayMale = idvalue("browseGayMale");
+	browseGayMale.addEventListener("click", resultsData("", "", "", "", "Male", "Gay"));
+	var bGayFemale = idvalue("browseGayFemale");
+	bGayFemale.addEventListener("click", resultsData("", "", "", "", "Female", "Gay"));
+	var bHasKids = idvalue("browseHasKids");
+	bHasKids.addEventListener("click", resultsData("", "hasKids", "Yes", "", "", ""));
+	var bWantsKids = idvalue("browseWantsKids");
+	bWantsKids.addEventListener("click", resultsData("", "wantsKids", "Yes", "", "", ""));
+	var bVehicle = idvalue("browseVehicle");
+	bVehicle.addEventListener("click", resultsData("", "vehicle", "Yes", "", "", ""));
+	var bInterests = idvalue("browseInterests");
+	bInterests.addEventListener("click", resultsData("", "interests", "Yes", "", "", ""));
+	var bStable = idvalue("browseStable");
+	bStable.addEventListener("click", resultsData("", "stable", "Yes", "", "", ""));
+	var bDrinks = idvalue("browseDrinks");
+	bDrinks.addEventListener("click", resultsData("", "drinks", "Yes", "", "", ""));
+	var bSmokes = idvalue("browseSmokes");
+	bSmokes.addEventListener("click", resultsData("", "smokes", "Yes", "", "", ""));
+	var bPets = idvalue("browsePets");
+	bPets.addEventListener("click", resultsData("", "hasPets", "Yes", "", "", ""));
+	var bfavorites = idvalue("favorites");
+	//bfavorites.addEventListener("click", resultsData("Yes", "", "", "", "", ""));
+	var bsearchBar = idvalue("searchBar");
+	//bsearchBar.addEventListener("click", resultsData("", "", "", "", "", ""));
+	*/
 
 
