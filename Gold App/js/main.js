@@ -1,7 +1,3 @@
-$('#resultsPage').on('pageinit', function(){
-	//code needed for home page goes here
-});	
-		
 $('#addItem').on('pageinit', function(){
 
 		var myForm = $('#addUserForm');
@@ -363,6 +359,12 @@ var getImage = function(genderType, oValue, makeSubList) {
 		}
 	};
 
+// Restore color function
+	var restoreField = function(field) {
+		idvalue(field).style.color = "black";
+		idvalue(field).value = "";
+	};
+
 // Global Variables
 	var genderValue = "Unspecified";
 	var orientationValue = "Unspecified";
@@ -372,9 +374,11 @@ var getImage = function(genderType, oValue, makeSubList) {
 	displayLink.addEventListener("click", getData);
 	var clearLink = idvalue("clear");
 	clearLink.addEventListener("click", confirmDelete);
-	var bMale = idvalue("browseMale");
+	var save = idvalue("submit");
+	save.addEventListener("click", storeData(this.key));
+	/*var bMale = idvalue("browseMale");
 	bMale.addEventListener("click", resultsData("", "", "Male", "", "", ""));
-	/*var bFemale = idvalue("browseFemale");
+	var bFemale = idvalue("browseFemale");
 	bFemale.addEventListener("click", resultsData("", "", "Female", "", "", ""));
 	var bStraight = idvalue("browseStraight");
 	bStraight.addEventListener("click", resultsData("", "", "Straight", "", "", ""));
@@ -404,6 +408,12 @@ var getImage = function(genderType, oValue, makeSubList) {
 	//bfavorites.addEventListener("click", resultsData("Yes", "", "", "", "", ""));
 	var bsearchBar = idvalue("searchBar");
 	//bsearchBar.addEventListener("click", resultsData("", "", "", "", "", ""));
+	var userField = idvalue("uname");
+	userField.addEventListener("focus", restoreField("uname"));
+	var ageField = idvalue("age")
+	userField.addEventListener("focus", restoreField("age"));
+	var cityField = idvalue("city")
+	userField.addEventListener("focus", restoreField("city"));
+	var wsiteField = idvalue("wsite")
+	userField.addEventListener("focus", restoreField("wsite"));
 	*/
-
-

@@ -15,7 +15,7 @@
 		<meta name="viewport" content="user-scalable=no, width=device-width" />
 		<title>Remember Who?</title>
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/css.css" />
+		<link rel="stylesheet" href="css/themes/VintageMod.css" />
 	</head>
 
 	<body>
@@ -28,7 +28,7 @@
 			</div>
 			<a href="#addItem" data-inset="true" title="Add a User" name="cta"><img src="img/indexImage.png"></a>
 			<div>
-				<p>Search Users: <input type="search" data-filter="true" id="searchBar"/></p>
+				<p>Search Users: <input type="search" id="searchBar"/></p>
 			</div>
 			<h3>Browse Users By...</h3>
 			<div class="ui-grid-a">
@@ -69,23 +69,23 @@
 					<h3>General Information</h3>
 					<div data-role="fieldcontain">
 						<label for="uname">Username: (Required)</label>
-						<input type="text" name="uname" id="uname" />
+						<input type="text" name="uname" id="uname" value="Earheart" style="color:grey"/>
 					</div>
 					<div data-role="fieldcontain">
 						<label for="age">Age: (Required)</label>
-						<input type="text" name="age" id="age" />
+						<input type="text" name="age" id="age" value="26"/>
 					</div>
 					<div data-role="fieldcontain">
 						<label for="city">City: (Required)</label>
-						<input type="text" name="city" id="city" />
+						<input type="text" name="city" id="city" value="Orlando"/>
 					</div>
 					<div data-role="fieldcontain">
 						<label for="wsite">Dating Website: (Required)</label>
-						<input type="text" name="wsite" id="wsite" />
+						<input type="text" name="wsite" id="wsite" value="Pof.com"/>
 					</div>
 					<div data-role="fieldcontain">
 						<label for="fcontact">First Contacted: </label>
-						<input type="date" name="fcontact" id="fcontact" />
+						<input type="date" name="fcontact" id="fcontact"/>
 					</div>
 				</section>
 				<br />
@@ -119,7 +119,7 @@
 						<fieldset data-role="controlgroup">
 							<legend>Check all that apply.</legend>
 							<input type="checkbox" value="Favorite" name="checkBox" id="favoriteBox" />
-							<label for="favorite">Favorite</label>
+							<label for="favoriteBox">Favorite</label>
 							<input type="checkbox" value="Has a Vehicle" name="checkBox" id="vehicle" />
 							<label for="vehicle">Has A Vehicle</label>
 							<input type="checkbox" value="Has Shared Interests" name="checkBox" id="shared_interests" />
@@ -202,7 +202,7 @@
 				<h1>Remember Who</h1>
 			</div>
 			<div>
-				<p>Search Users: <input type="search" data-filter="true" id="searchBar"/></p>
+				<p>Search Users: <input type="search" id="searchBar"/></p>
 			</div>
 			<div>
 				<h2>About Links</h2>
@@ -216,7 +216,7 @@
 				<div data-role="navbar">
 					<ul>
 						<li><a href="index.html" data-icon="home">Home</a></li>
-						<li><a href="#addItem" data-ajax="false" data-icon="plus">Add a User</a></li>
+						<li><a href="#addItem" data-icon="plus">Add a User</a></li>
 						<li><a href="#resultsPage" id="favorites" data-icon="star">Favorites</a></li>
 						<li><a href="#aboutPage" data-icon="info" data-iconpos="right" class="ui-btn-active">About Page</a></li>
 					</ul>
@@ -269,24 +269,24 @@
 				<h1>Remember Who</h1>
 			</div>
 			<div>
-				<p>Search Users: <input type="search" data-filter="true" id="searchBar"/></p>
+				<p>Search Users: <input type="search" id="searchBar"/></p>
 			</div>
 			<div>
 				<h2>Gender</h2>
 				<ul data-role="listview">
-				<li>
-					<a href="#resultsPage" id="browseMale">
-						<img src="img/maleThumbnail.png">
-						<h3>Male</h3>
-					</a>
-				</li>
-				<li>
-					<a href="#resultsPage" id="browseFemale">
-						<img src="img/femaleThumbnail.png">
-						<h3>Female</h3>
-					</a>
-				</li>
-			</ul>
+					<li>
+						<a href="#resultsPage" id="browseMale">
+							<img src="img/maleThumbnail.png">
+							<h3>Male</h3>
+						</a>
+					</li>
+					<li>
+						<a href="#resultsPage" id="browseFemale">
+							<img src="img/femaleThumbnail.png">
+							<h3>Female</h3>
+						</a>
+					</li>
+				</ul>
 			</div>
 			<br>
 			<div data-role="footer" data-position="fixed">
@@ -309,35 +309,35 @@
 				<h1>Remember Who</h1>
 			</div>
 			<div>
-				<p>Search Users: <input type="search" data-filter="true" id="searchBar"/></p>
+				<p>Search Users: <input type="search" id="searchBar"/></p>
 			</div>
 			<div data-role="content">
 				<h2>Sexual Orientation</h2>
 				<ul data-role="listview">
-				<li>
-					<a href="#resultsPage" id="browseStraight">
-						<img src="img/straightThumbnail.png">
-						<h3>Straight</h3>
-					</a>
-				</li>
-				<li>
-					<a href="#resultsPage" id="browseBisexual">
-						<img src="img/bisexualThumbnail.png">
-						<h3>Bisexual</h3>
-					</a>
-				</li>
-				<li>
-					<a href="#resultsPage" id="browseGayMale">
-						<img src="img/gayMaleThumbnail.png">
-						<h3>Gay Male</h3>
-					</a>
-				</li>
-				<li>
-					<a href="#resultsPage" id="browseGayFemale">
-						<img src="img/gayFemaleThumbnail.png">
-						<h3>Gay Female</h3>
-					</a>
-				</li>
+					<li>
+						<a href="#resultsPage" id="browseStraight">
+							<img src="img/straightThumbnail.png">
+							<h3>Straight</h3>
+						</a>
+					</li>
+					<li>
+						<a href="#resultsPage" id="browseBisexual">
+							<img src="img/bisexualThumbnail.png">
+							<h3>Bisexual</h3>
+						</a>
+					</li>
+					<li>
+						<a href="#resultsPage" id="browseGayMale">
+							<img src="img/gayMaleThumbnail.png">
+							<h3>Gay Male</h3>
+						</a>
+					</li>
+					<li>
+						<a href="#resultsPage" id="browseGayFemale">
+							<img src="img/gayFemaleThumbnail.png">
+							<h3>Gay Female</h3>
+						</a>
+					</li>
 				</ul>
 			</div>
 			<br>
@@ -361,7 +361,7 @@
 				<h1>Remember Who</h1>
 			</div>
 			<div>
-				<p>Search Users: <input type="search" data-filter="true" id="searchBar"/></p>
+				<p>Search Users: <input type="search" id="searchBar"/></p>
 			</div>
 			<div data-role="content">
 				<h2>Children</h2>
@@ -465,7 +465,7 @@
 				<h1>Remember Who</h1>
 			</div>
 			<div>
-				<p>Search Users: <input type="search" data-filter="true" id="searchBar"/></p>
+				<p>Search Users: <input type="search" id="searchBar"/></p>
 			</div>
 			<div>
 				<h2>Results...</h2>
@@ -489,6 +489,6 @@
 		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 		<script type="text/javascript" src="js/json.js"></script>
 		<script type="text/javascript" src="js/jquery.validate.js"></script>
-		<script type="text/javascript" src="js/main.js"></script>-->
+		<script type="text/javascript" src="js/main.js"></script>
 	</body>
 </html>
