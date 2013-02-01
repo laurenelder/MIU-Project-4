@@ -15,9 +15,9 @@ window.addEventListener("DOMContentLoaded", function() {
 	};
 
 // Display Slider Value Functions
-	$("compatibility").onchange = function() {
+	displaySlider = function(sValue) {
 		var display = $("sliderDisplay");
-		var sliderValue = $("compatibility").value + "%";
+		var sliderValue = sValue + "%";
 		display.innerHTML = sliderValue;
 	};
 
@@ -395,6 +395,12 @@ var getImage = function(genderType, oValue, makeSubList) {
 		}
 	};
 
+// Restore color function
+	var restoreField = function(field) {
+		$(field).style.color = "black";
+		$(field).value = "";
+	};
+
 // Variable Defaults
 	var errMsg = $("errors");
 
@@ -405,4 +411,12 @@ var getImage = function(genderType, oValue, makeSubList) {
 	clearLink.addEventListener("click", confirmDelete);
 	var save = $("submit");
 	save.addEventListener("click", validate);
+	var userField = $("uname");
+	userField.addEventListener("focus", restoreField("uname"));
+	var ageField = $("age")
+	userField.addEventListener("focus", restoreField("age"));
+	var cityField = $("city")
+	userField.addEventListener("focus", restoreField("city"));
+	var wsiteField = $("wsite")
+	userField.addEventListener("focus", restoreField("wsite"));
 });
